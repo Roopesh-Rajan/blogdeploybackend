@@ -3,9 +3,23 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
+const helmet=require("helmet"); 
 const app = express();
 app.use(cors());
 app.use(express.json()); 
+const helmet = require('helmet');
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://vercel.live"],
+      },
+    },
+  })
+);
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
