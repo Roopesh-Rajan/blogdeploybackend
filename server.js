@@ -7,18 +7,6 @@ require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(express.json()); 
-const helmet = require('helmet');
-
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "https://vercel.live"],
-      },
-    },
-  })
-);
 
 
 // Connect to MongoDB
